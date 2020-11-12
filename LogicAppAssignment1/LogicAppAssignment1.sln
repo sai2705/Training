@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "LogicAppAssignment1", "LogicAppAssignment1\LogicAppAssignment1.deployproj", "{B7C46F6C-0AD1-4008-B4A2-DEFF4B11468E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7C46F6C-0AD1-4008-B4A2-DEFF4B11468E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7C46F6C-0AD1-4008-B4A2-DEFF4B11468E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7C46F6C-0AD1-4008-B4A2-DEFF4B11468E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7C46F6C-0AD1-4008-B4A2-DEFF4B11468E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD43A1C7-96A5-4827-890F-0C93B7094D40}
+	EndGlobalSection
+EndGlobal

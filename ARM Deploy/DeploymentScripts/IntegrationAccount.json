@@ -1,0 +1,41 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    },
+    "Sku_Name": {
+      "type": "string",
+      "defaultValue": "Free"
+    },
+    "Display_Name": {
+      "type": "string",
+      "defaultValue": "Shipments Integration Account"
+    },
+    "Integration_AccountName": {
+      "type": "string",
+      "defaultValue": "shipment-integration-account"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "properties": {},
+      "sku": {
+        "name": "[parameters('Sku_Name')]"
+      },
+      "tags": {
+        "displayName": "[parameters('Display_Name')]"
+      },
+      "name": "[parameters('Integration_AccountName')]",
+      "type": "Microsoft.Logic/integrationAccounts",
+      "location": "[parameters('location')]",
+      "apiVersion": "2019-05-01"
+    }
+  ],
+  "outputs": {
+  }
+}

@@ -1,0 +1,20 @@
+{
+
+"BatchId":"{{ content.Content.BatchId }}",
+"Company": "{{ content.Content.Company }}",
+"ReceivedDate":"{{ content.Content.ReceivedDate }}",
+"Items":[
+{% JSONArrayFor item in content.Content.MessageItems %}
+{
+"ItemNumber":"{{ item.ItemNumber }}",
+"ItemType":"{{ item.ItemType }}",
+"Description":"{{ item.Description }}",
+"Address":"{{ item.Address }}",
+"Quantity":"{{ item.Quantity }}",
+"UnitOfMeasure":"{{ item.UnitOfMeasure }}",
+"State": "{{ item.State }}",
+"CountryCode":"{{ item.CountryCode }}"
+}
+{% endJSONArrayFor %}
+]
+}

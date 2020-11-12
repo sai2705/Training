@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Sku_Name": {
+      
+      "value": "Free"
+    },
+    "Display_Name": {
+     
+      "value": "Shipments Integration Account"
+    },
+    "Integration_AccountName": {
+     
+      "value": "shipment-integration-account"
+    }
+  }
+}

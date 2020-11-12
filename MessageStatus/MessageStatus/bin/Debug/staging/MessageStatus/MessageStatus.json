@@ -1,0 +1,455 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "metadata": {
+        "description": "Name of the Logic App."
+      }
+    },
+    "logicAppLocation": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "allowedValues": [
+        "[resourceGroup().location]",
+        "eastasia",
+        "southeastasia",
+        "centralus",
+        "eastus",
+        "eastus2",
+        "westus",
+        "northcentralus",
+        "southcentralus",
+        "northeurope",
+        "westeurope",
+        "japanwest",
+        "japaneast",
+        "brazilsouth",
+        "australiaeast",
+        "australiasoutheast",
+        "southindia",
+        "centralindia",
+        "westindia",
+        "canadacentral",
+        "canadaeast",
+        "uksouth",
+        "ukwest",
+        "westcentralus",
+        "westus2",
+        "koreacentral",
+        "koreasouth",
+        "francecentral",
+        "francesouth",
+        "uaecentral",
+        "southafricanorth",
+        "southafricawest",
+        "switzerlandnorth",
+        "germanynorth",
+        "germanywestcentral"
+      ],
+      "metadata": {
+        "description": "Location of the Logic App."
+      }
+    },
+    "IntegrationAccountName": {
+      "type": "string",
+      "defaultValue": "integration-account
+"
+    },
+    "LogicAppIntegrationAccount": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Logic/integrationAccounts/',parameters('IntegrationAccountName'))]"
+    },
+    "azureblob_Connection_Name": {
+      "type": "string",
+      "defaultValue": "azureblob"
+    },
+    "azureblob_Connection_DisplayName": {
+      "type": "string",
+      "defaultValue": "connection"
+    },
+    "azureblob_accountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the storage account the connector should use."
+      },
+      "defaultValue": "blobpostmessage"
+    },
+    "azureblob_accessKey": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Specify a valid primary/secondary storage account access key."
+      }
+    },
+    "azureblob_privacySetting": {
+      "type": "string",
+      "metadata": {
+        "description": "Privacy Setting"
+      },
+      "allowedValues": [
+        "None",
+        "Private",
+        "Organizational",
+        "Public"
+      ]
+    },
+    "sql_Connection_Name": {
+      "type": "string",
+      "defaultValue": "sql"
+    },
+    "sql_Connection_DisplayName": {
+      "type": "string",
+      "defaultValue": "Message ."
+    },
+    "sql_server": {
+      "type": "string",
+      "metadata": {
+        "description": "SQL server name"
+      }
+    },
+    "sql_database": {
+      "type": "string",
+      "metadata": {
+        "description": "SQL database name"
+      }
+    },
+    "sql_username": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Username credential"
+      }
+    },
+    "sql_password": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password credential"
+      }
+    },
+    "sql_authType": {
+      "type": "string",
+      "defaultValue": "basic",
+      "allowedValues": [
+        "windows",
+        "basic"
+      ]
+    },
+    "sql_gateway_id": {
+      "type": "string",
+      "defaultValue": "gateway"
+    }
+    
+    
+  },
+  "variables": {},
+  "resources": [
+    {
+      "name": "[parameters('logicAppName')]",
+      "type": "Microsoft.Logic/workflows",
+      "location": "[parameters('logicAppLocation')]",
+      "tags": {
+        "displayName": "LogicApp"
+      },
+      "apiVersion": "2016-06-01",
+      "properties": {
+        "definition": {
+          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "actions": {
+            "Get_File_Content": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent(triggerBody()?['Path']))}/content",
+                "queries": {
+                  "inferContentType": true
+                }
+              },
+              "runAfter": {}
+            },
+            "Parse_JSON": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@string(body('Get_File_Content'))",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SessionId": {
+                      "type": "string"
+                    },
+                    "Content": {
+                      "type": "object",
+                      "properties": {
+                        "BatchId": {
+                          "type": "string"
+                        },
+                        "Company": {
+                          "type": "string"
+                        },
+                        "ReceivedDate": {
+                          "type": "string"
+                        },
+                        "MessageItems": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "ItemNumber": {
+                                "type": "string"
+                              },
+                              "ItemType": {
+                                "type": "string"
+                              },
+                              "Description": {
+                                "type": "string"
+                              },
+                              "Address": {
+                                "type": "string"
+                              },
+                              "Quantity": {
+                                "type": "string"
+                              },
+                              "UnitOfMeasure": {
+                                "type": "string"
+                              },
+                              "State": {
+                                "type": "string"
+                              },
+                              "CountryCode": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ItemNumber",
+                              "ItemType",
+                              "Description",
+                              "Address",
+                              "Quantity",
+                              "UnitOfMeasure",
+                              "State",
+                              "CountryCode"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "FunctionName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_File_Content": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Transform_Integration_JSON_Message_to_JSON_Message": {
+              "inputs": {
+                "content": "@body('Parse_JSON')",
+                "integrationAccount": {
+                  "map": {
+                    "name": "JSONTOJSON"
+                  }
+                }
+              },
+              "type": "Liquid",
+              "kind": "JsonToJson",
+              "runAfter": {
+                "Parse_JSON": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Scope_To_Call_Stored_Procedure": {
+              "type": "Scope",
+              "actions": {
+                "Execute_stored_procedure_Insert_Message_": {
+                  "type": "ApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connection": {
+                        "name": "@parameters('$connections')['sql']['connectionId']"
+                      }
+                    },
+                    "method": "post",
+                    "body": {
+                      "json": "@{body('Transform_Integration_JSON_Message_to_JSON_Message')}"
+                    },
+                    "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('default'))},@{encodeURIComponent(encodeURIComponent('default'))}/procedures/@{encodeURIComponent(encodeURIComponent('[dbo].[Insert_Message]'))}",
+                    "retryPolicy": {
+                      "type": "fixed",
+                      "count": 2,
+                      "interval": "PT20S"
+                    }
+                  },
+                  "runAfter": {}
+                }
+              },
+              "runAfter": {
+                "Transform_Integration_JSON_Message_to_JSON_Message": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Condition_To_Check_Logic_App_Scenario": {
+              "type": "If",
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@result('Scope_To_Call_Stored_Procedure')[0]['status']",
+                      "Succeeded"
+                    ]
+                  }
+                ]
+              },
+              "actions": {
+                "Delete_File_In_Blob_Storage": {
+                  "type": "ApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connection": {
+                        "name": "@parameters('$connections')['azureblob']['connectionId']"
+                      }
+                    },
+                    "method": "delete",
+                    "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent(triggerBody()?['Path']))}"
+                  },
+                  "runAfter": {}
+                }
+              },
+              "runAfter": {
+                "Scope_To_Call_Stored_Procedure": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Terminate_If_Condition_Is_False": {
+                    "type": "Terminate",
+                    "inputs": {
+                      "runStatus": "Failed",
+                      "runError": {
+                        "code": "400",
+                        "message": "Bad Request"
+                      }
+                    },
+                    "runAfter": {}
+                  }
+                }
+              }
+            }
+          },
+          "parameters": {
+            "$connections": {
+              "defaultValue": {},
+              "type": "Object"
+            }
+          },
+          "triggers": {
+            "Read_A_File_From_Blob_Storage_": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "/datasets/default/triggers/batch/onupdatedfile",
+                "queries": {
+                  "folderId": "JTJmbWVzc2FnZWNvbnRhaW5lcg==",
+                  "maxFileCount": 10
+                }
+              },
+              "recurrence": {
+                "frequency": "Second",
+                "interval": 15
+              },
+              "metadata": {
+                "JTJmbWVzc2FnZWNvbnRhaW5lcg==": "/messagecontainer"
+              },
+              "splitOn": "@triggerBody()"
+            }
+          },
+          "contentVersion": "1.0.0.0",
+          "outputs": {}
+        },
+        "parameters": {
+          "$connections": {
+            "value": {
+              "azureblob": {
+                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'azureblob')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azureblob_Connection_Name'))]",
+                "connectionName": "[parameters('azureblob_Connection_Name')]"
+              },
+              "sql": {
+                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'sql')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sql_Connection_Name'))]",
+                "connectionName": "[parameters('sql_Connection_Name')]"
+              }
+            }
+          }
+        },
+        "integrationAccount": {
+          "id": "[parameters('LogicAppIntegrationAccount')]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/connections', parameters('azureblob_Connection_Name'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('sql_Connection_Name'))]"
+      ]
+    },
+    {
+      "type": "MICROSOFT.WEB/CONNECTIONS",
+      "apiVersion": "2018-07-01-preview",
+      "name": "[parameters('azureblob_Connection_Name')]",
+      "location": "[parameters('logicAppLocation')]",
+      "properties": {
+        "api": {
+          "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'azureblob')]"
+        },
+        "displayName": "[parameters('azureblob_Connection_DisplayName')]",
+        "parameterValues": {
+          "accountName": "[parameters('azureblob_accountName')]",
+          "accessKey": "[parameters('azureblob_accessKey')]",
+          "privacySetting": "[parameters('azureblob_privacySetting')]"
+        }
+      }
+    },
+    {
+      "type": "MICROSOFT.WEB/CONNECTIONS",
+      "apiVersion": "2018-07-01-preview",
+      "name": "[parameters('sql_Connection_Name')]",
+      "location": "[parameters('logicAppLocation')]",
+      "properties": {
+        "api": {
+          "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'sql')]"
+        },
+        "displayName": "[parameters('sql_Connection_DisplayName')]",
+        "parameterValues": {
+          "server": "[parameters('sql_server')]",
+          "database": "[parameters('sql_database')]",
+          "authType": "[parameters('sql_authType')]",
+          "username": "[parameters('sql_username')]",
+          "password": "[parameters('sql_password')]",
+          "gateway": {
+            "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Web/connectionGateways/', parameters('sql_gateway_id'))]"
+          }
+        }
+      }
+    }
+    
+  ],
+  "outputs": {}
+}

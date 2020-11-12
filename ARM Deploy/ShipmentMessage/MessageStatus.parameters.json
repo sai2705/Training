@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "value": "MessageStatus"
+    },
+    "azureblob_Connection_Name": {
+
+      "value": "azureblob"
+    },
+    "azureblob_Connection_DisplayName": {
+
+      "value": "connection"
+    },
+    "azureblob_accessKey": {
+      "value": "wAfWNvJCZq8oKSHwQehzA4ZR/50LBx6wwKBF8NGRAdivPFvtH3cynfgD11wdRiEuRB/yNT0ayruqMmvQOSvwuw=="
+    },
+    "azureblob_privacySetting": {
+      "value": "Public"
+    },
+    "sql_Connection_Name": {
+
+      "value": "sql"
+    },
+    "sql_Connection_DisplayName": {
+
+      "value": "Message ."
+    },
+    "sql_server": {
+      "value": "."
+    },
+    "sql_database": {
+      "value": "Message"
+    },
+    "sql_username": {
+      "value": "harsha"
+    },
+    "sql_password": {
+      "value": "Msai2705*"
+    },
+    "sql_gateway_id": {
+
+      "value": "gateway"
+    },
+    "IntegrationAccountName": {
+      "value": "integration-account"
+    }
+
+  }
+}
