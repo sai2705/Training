@@ -6,7 +6,7 @@
 
 [string] $ResourceLocation = "Central US"
 )
- Connect-AzureRmAccount
+# Connect-AzureRmAccount
 
 $IntegrationAccountName = Read-Host "Enter Integration account name"
 $ResourceGroupName = Read-Host "Enter Resource group name"
