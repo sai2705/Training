@@ -6,19 +6,13 @@
 
 [string] $ResourceLocation = "Central US",
 
-[string] $Path,
-
-[string] $Output
+[string] $Path
 )
-$json = $Output | ConvertFrom-Json
-
-Write-Output "***json : $json"
 
 Write-Output "***ResourceGroupName : $ResourceGroupName" 
-
+Write-Output "***IntegrationAccountName : $IntegrationAccountName" 
 Write-Output "***Path : $Path"
 
-$IntegrationAccountName = "$json.integrationAccountName.value"
 
 
 
@@ -44,5 +38,6 @@ content = "$Content"
 contentType = "application/xml"
 }
 }
+
  New-AzureRmResource -Location $ResourceLocation -PropertyObject $PropertiesObject -ResourceGroupName $ResourceGroupName -ResourceType Microsoft.Logic/integrationAccounts/maps -ResourceName "$IntegrationAccountName/$ResourceName" -ApiVersion 2019-05-01 -Force
 }
