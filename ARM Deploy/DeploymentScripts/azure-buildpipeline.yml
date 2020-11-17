@@ -1,0 +1,31 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: 'ARM Deploy'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '5.5.1'
+
+- task: NuGetCommand@2
+- task: PublishBuildArtifacts@1
+- task: VSBuild@1
+  inputs:
+    solution: 'ARM Deploy'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'ARM Deploy'
+    publishLocation: 'pipeline'

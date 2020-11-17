@@ -5,9 +5,14 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "DeploymentScripts", "DeploymentScripts\DeploymentScripts.deployproj", "{BF47904C-B6F9-470F-BC9B-37A09C6C3184}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceiveShipmentStatus", "ReceiveShipmentStatus\ReceiveShipmentStatus.csproj", "{A7E2C9B1-EAF7-46BD-910A-735E19652A36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceiveShipmentStatus", "ReceiveShipmentStatus\ReceiveShipmentStatus.csproj", "{A7E2C9B1-EAF7-46BD-910A-735E19652A36}"
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ShipmentMessage", "ShipmentMessage\ShipmentMessage.deployproj", "{3DCB5BDB-C7EF-495C-A6C8-D8EEDB7CDE36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9E63C0D-0356-47D1-8CC6-2DB7DFB2DC53}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\azure-buildpipeline.yml = ..\..\..\Desktop\azure-buildpipeline.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
