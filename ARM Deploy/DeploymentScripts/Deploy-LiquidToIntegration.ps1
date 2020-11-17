@@ -1,17 +1,19 @@
 ﻿param (
 
-[string]$IntegrationAccountName,
+[string] $IntegrationAccountName,
 
 [string] $ResourceGroupName,
 
-[string] $ResourceLocation = "Central US"
+[string] $ResourceLocation = "Central US",
+
+[string] $Path
 )
-# Connect-AzureRmAccount
 
-$IntegrationAccountName = Read-Host "Enter Integration account name"
-$ResourceGroupName = Read-Host "Enter Resource group name"
+Write-Output "***ResourceGroupName : $ResourceGroupName" 
+Write-Output "***IntegrationAccountName : $IntegrationAccountName" 
+Write-Output "***Path : $Path"
 
-$Path = "C:\Users\saisriharsha.mankala\source\repos\DeploymentScripts\DeploymentScripts\Maps\"
+
 
 
 Get-ChildItem "$Path\*" -Recurse -Include *.xslt, *.liquid |

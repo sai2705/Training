@@ -26,10 +26,10 @@
     <None Include="Deploy-LiquidToIntegration.ps1" />
     <None Include="Maps\Example.xslt" />
     <None Include="Maps\JSONTOJSON.liquid" />
-    <None Include="StorageAccount.json" />
-    <None Include="StorageAccount.parameters.json" />
-    <None Include="IntegrationAccount.json" />
-    <None Include="IntegrationAccount.parameters.json" />
+    <Content Include="StorageAccount.json" />
+    <Content Include="StorageAccount.parameters.json" />
+    <Content Include="IntegrationAccount.json" />
+    <Content Include="IntegrationAccount.parameters.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
