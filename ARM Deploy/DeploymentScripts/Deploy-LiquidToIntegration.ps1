@@ -9,9 +9,9 @@
 [string] $Path
 )
 
-Write-Output "***ResourceGroupName : $ResourceGroupName" 
-Write-Output "***IntegrationAccountName : $IntegrationAccountName" 
-Write-Output "***Path : $Path"
+Write-Output "ResourceGroupName : $ResourceGroupName" 
+Write-Output "IntegrationAccountName : $IntegrationAccountName" 
+Write-Output "Path : $Path"
 
 
 
