@@ -18,9 +18,15 @@ steps:
 - task: NuGetToolInstaller@1
 - task: NuGetToolInstaller@1
   inputs:
-    versionSpec: '5.5.1'
+    versionSpec: '5.8.0'
 
 - task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: 'ARM Deploy/ARM Deploy.sln'
+    feedsToUse: 'select'
+    vstsFeed: 'f5054b20-aa89-48f4-894d-18c937ef1a19'
+
 - task: VSBuild@1
   inputs:
     solution: 'ARM Deploy'
