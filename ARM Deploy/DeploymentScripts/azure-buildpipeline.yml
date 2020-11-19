@@ -21,7 +21,6 @@ steps:
     versionSpec: '5.5.1'
 
 - task: NuGetCommand@2
-- task: PublishBuildArtifacts@1
 - task: VSBuild@1
   inputs:
     solution: 'ARM Deploy'
