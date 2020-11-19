@@ -68,7 +68,7 @@
   },
   "resources": [
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2018-02-01",
       "name": "[variables('hostingPlanName')]",
       "type": "Microsoft.Web/serverfarms",
       "location": "[resourceGroup().location]",
@@ -84,10 +84,11 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-03-01",
       "name": "[variables('functionAppName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
+      "kind": "functionapp",
       "tags": {
         "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]": "Resource",
         "displayName": "Website"
@@ -99,7 +100,24 @@
       ],
       "properties": {
         "name": "[variables('functionAppName')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "siteConfig": {
+          "appSettings": [
+
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "node"
+            },
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "10.14.1"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~2"
+            }
+          ]
+        }
       }
     },
     {
@@ -173,6 +191,7 @@
       "name": "[variables('applicationInsightsName')]",
       "type": "Microsoft.Insights/components",
       "location": "East US",
+      "kind": "web",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('applicationInsightsName'))]"
       ],
@@ -181,7 +200,9 @@
         "displayName": "AppInsightsComponent"
       },
       "properties": {
-        "applicationId": "[variables('applicationInsightsName')]"
+        "applicationId": "[variables('applicationInsightsName')]",
+        "Application_Type": "web"
+
       }
     },
     {
