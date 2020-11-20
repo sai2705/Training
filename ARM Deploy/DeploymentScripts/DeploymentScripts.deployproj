@@ -24,7 +24,7 @@
   <!-- vertag<:>end -->
   <ItemGroup>
     <None Include="azure-buildpipeline.yml" />
-    <None Include="Deploy-LiquidToIntegration.ps1" />
+    <Content Include="Deploy-LiquidToIntegration.ps1" />
     <Content Include="Maps\Example.xslt" />
     <Content Include="Maps\JSONTOJSON.liquid" />
     <Content Include="StorageAccount.json" />
