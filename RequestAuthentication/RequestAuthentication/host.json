@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingExcludedTypes": "Request",
+      "samplingSettings": {
+        "isEnabled": true
+      }
+    }
+  },
+  "extensions": {
+    "durableTask": {
+      "notifications": {
+        "eventGrid": {
+          "topicEndpoint": "https://eventgriddomainauthentication.centralindia-1.eventgrid.azure.net/api/events",
+          "keySettingName": "EventDomainKey"
+        }
+      }
+    }
+  }
+}

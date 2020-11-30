@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "value": "OrderDetails"
+    },
+    "sql_1_server": {
+      "value": "SMANKALA02"
+    },
+    "sql_1_database": {
+      "value": "EventGrid"
+    },
+    "sql_1_username": {
+      "value": "harsha"
+    },
+    "sql_1_password": {
+      "value": "Msai2705*"
+    },
+    "sql_1_encryptConnection": {
+      "value": true
+    },
+    "sql_1_privacySetting": {
+      "value": "Public"
+    }
+   
+  }
+}
