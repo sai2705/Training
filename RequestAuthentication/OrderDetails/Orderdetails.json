@@ -67,45 +67,45 @@
       "type": "string",
       "defaultValue": "onpremisegateway"
     },
-    "sql_1_Connection_Name": {
+    "sql_Connection_Name": {
       "type": "string",
       "defaultValue": "sql-1"
     },
-    "sql_1_Connection_DisplayName": {
+    "sql_Connection_DisplayName": {
       "type": "string",
       "defaultValue": "EventGrid SMANKALA02"
     },
-    "sql_1_server": {
+    "sql_server": {
       "type": "string",
       "metadata": {
         "description": "SQL server name"
       }
     },
-    "sql_1_database": {
+    "sql_database": {
       "type": "string",
       "metadata": {
         "description": "SQL database name"
       }
     },
-    "sql_1_username": {
+    "sql_username": {
       "type": "securestring",
       "metadata": {
         "description": "Username credential"
       }
     },
-    "sql_1_password": {
+    "sql_password": {
       "type": "securestring",
       "metadata": {
         "description": "Password credential"
       }
     },
-    "sql_1_encryptConnection": {
+    "sql_encryptConnection": {
       "type": "bool",
       "metadata": {
         "description": "Encrypt Connection"
       }
     },
-    "sql_1_privacySetting": {
+    "sql_privacySetting": {
       "type": "string",
       "metadata": {
         "description": "Privacy Setting"
@@ -319,35 +319,35 @@
             "value": {
               "sql": {
                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'sql')]",
-                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sql_1_Connection_Name'))]",
-                "connectionName": "[parameters('sql_1_Connection_Name')]"
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sql_Connection_Name'))]",
+                "connectionName": "[parameters('sql_Connection_Name')]"
               }
             }
           }
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/connections', parameters('sql_1_Connection_Name'))]"
+        "[resourceId('Microsoft.Web/connections', parameters('sql_Connection_Name'))]"
       ]
     },
     {
       "type": "MICROSOFT.WEB/CONNECTIONS",
       "apiVersion": "2018-07-01-preview",
-      "name": "[parameters('sql_1_Connection_Name')]",
+      "name": "[parameters('sql_Connection_Name')]",
       "location": "[parameters('logicAppLocation')]",
       "properties": {
         "api": {
           "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'sql')]"
         },
-        "displayName": "[parameters('sql_1_Connection_DisplayName')]",
+        "displayName": "[parameters('sql_Connection_DisplayName')]",
         "parameterValues": {
-          "server": "[parameters('sql_1_server')]",
-          "database": "[parameters('sql_1_database')]",
+          "server": "[parameters('sql_server')]",
+          "database": "[parameters('sql_database')]",
           "authType": "[parameters('sql_authType')]",
-          "username": "[parameters('sql_1_username')]",
-          "password": "[parameters('sql_1_password')]",
-          "encryptConnection": "[parameters('sql_1_encryptConnection')]",
-          "privacySetting": "[parameters('sql_1_privacySetting')]",
+          "username": "[parameters('sql_username')]",
+          "password": "[parameters('sql_password')]",
+          "encryptConnection": "[parameters('sql_encryptConnection')]",
+          "privacySetting": "[parameters('sql_privacySetting')]",
           "gateway": {
             "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Web/connectionGateways/', parameters('sql_gateway_id'))]"
           }

@@ -5,22 +5,22 @@
     "logicAppName": {
       "value": "OrderDetails"
     },
-    "sql_1_server": {
+    "sql_server": {
       "value": "SMANKALA02"
     },
-    "sql_1_database": {
+    "sql_database": {
       "value": "EventGrid"
     },
-    "sql_1_username": {
+    "sql_username": {
       "value": "harsha"
     },
-    "sql_1_password": {
+    "sql_password": {
       "value": "Msai2705*"
     },
-    "sql_1_encryptConnection": {
+    "sql_encryptConnection": {
       "value": true
     },
-    "sql_1_privacySetting": {
+    "sql_privacySetting": {
       "value": "Public"
     }
    
