@@ -63,17 +63,13 @@
         "basic"
       ]
     },
-    "sql_gateway_id": {
-      "type": "string",
-      "defaultValue": "onpremisegateway"
-    },
-    "sql_Connection_Name": {
-      "type": "string",
-      "defaultValue": "sql-2"
-    },
     "sql_Connection_DisplayName": {
       "type": "string",
       "defaultValue": "EventGrid SMANKALA02"
+    },
+    "sql_Connection_Name": {
+      "type": "string",
+      "defaultValue": "sql-3"
     },
     "sql_server": {
       "type": "string",
@@ -116,6 +112,10 @@
         "Organizational",
         "Public"
       ]
+    },
+    "sql_gateway_id": {
+      "type": "string",
+      "defaultValue": "onpremisegateway"
     },
     "office365_Connection_Name": {
       "type": "string",
@@ -286,7 +286,12 @@
                           "Subject": "@items('Retrieving_the_details_from_the_passed_event')['subject']",
                           "Body": "<p>Event which passed is successful</p>"
                         },
-                        "path": "/v2/Mail"
+                        "path": "/v2/Mail",
+                        "retryPolicy": {
+                          "type": "fixed",
+                          "count": 2,
+                          "interval": "PT20S"
+                        }
                       },
                       "runAfter": {}
                     }
@@ -296,7 +301,10 @@
               },
               "runAfter": {
                 "Scope_to_execute_SP": [
-                  "Succeeded"
+                  "Succeeded",
+                  "Failed",
+                  "Skipped",
+                  "TimedOut"
                 ]
               },
               "else": {
@@ -319,7 +327,12 @@
                             "Subject": "@items('Retrieving_the_data_from_the_passed_event')['subject']",
                             "Body": "<p>Event which passed is Failed</p>"
                           },
-                          "path": "/v2/Mail"
+                          "path": "/v2/Mail",
+                          "retryPolicy": {
+                            "type": "fixed",
+                            "count": 2,
+                            "interval": "PT20S"
+                          }
                         },
                         "runAfter": {}
                       }
