@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "domains_EventGridDomainAuthentication_name": {
+      "defaultValue": "EventGridDomainAuthentication",
+      "type": "String"
+    },
+    "Location": {
+      "type": "string",
+      "defaultValue": "centralindia"
+    },
+    "Input_Schema": {
+      "type": "string",
+      "defaultValue": "EventGridSchema"
+    },
+    "eventGridSubscriptionUrl": {
+      "type": "string",
+      "defaultValue": "https://prod-22.centralindia.logic.azure.com:443/workflows/2219d641aaa44e72b5f8cbd30df0df03/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ta-SVyBRQgcYMNKjkBEe0o-dYtaooEb83fe1qwIB1tQ"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.EventGrid/domains",
+      "apiVersion": "2020-06-01",
+      "name": "[parameters('domains_EventGridDomainAuthentication_name')]",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "inputSchema": "[parameters('Input_Schema')]",
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.EventGrid/domains/topics",
+      "apiVersion": "2020-06-01",
+      "name": "[concat(parameters('domains_EventGridDomainAuthentication_name'), '/deleteeventusingfnapp')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.EventGrid/domains', parameters('domains_EventGridDomainAuthentication_name'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.EventGrid/domains/topics",
+      "apiVersion": "2020-06-01",
+      "name": "[concat(parameters('domains_EventGridDomainAuthentication_name'), '/publishevent')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.EventGrid/domains', parameters('domains_EventGridDomainAuthentication_name'))]"
+      ]
+    }
+  ]
+}

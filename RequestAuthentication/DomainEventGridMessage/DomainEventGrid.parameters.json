@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "domains_EventGridDomainAuthentication_name": {
+      "value": "EventGridDomainAuthentication"
+    },
+    "Location": {
+      "value": "centralindia"
+    },
+    "Input_Schema": {
+      "value": "EventGridSchema"
+    },
+    "eventGridSubscriptionUrl": {
+      "value": "https://prod-22.centralindia.logic.azure.com:443/workflows/2219d641aaa44e72b5f8cbd30df0df03/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ta-SVyBRQgcYMNKjkBEe0o-dYtaooEb83fe1qwIB1tQ"
+    }
+  }
+}
