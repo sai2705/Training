@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>1ae8a369-f6dc-4680-bc91-b73ab8705a43</ProjectGuid>
+    <ProjectGuid>6bb9504c-417d-438d-920f-6c461f3ffd99</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
     <PrepareForBuildDependsOn>
@@ -27,9 +27,8 @@
       <Visible>False</Visible>
     </None>
     <Content Include="Deploy-AzureResourceGroup.ps1" />
-    <Content Include="DomainEventGrid.json" />
-    <Content Include="DomainEventGrid.parameters.json" />
-    <Content Include="Functionapp.parameters.json" />
+    <Content Include="DeleteEventsFnapp.json" />
+    <Content Include="DeleteEventsFnapp.parameters.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

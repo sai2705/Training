@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteOrderDetails", "Delet
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "DomainEventGridMessage", "DomainEventGridMessage\DomainEventGridMessage.deployproj", "{1AE8A369-F6DC-4680-BC91-B73AB8705A43}"
 EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "FunctionAppArm", "FunctionAppArm\FunctionAppArm.deployproj", "{6BB9504C-417D-438D-920F-6C461F3FFD99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1AE8A369-F6DC-4680-BC91-B73AB8705A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AE8A369-F6DC-4680-BC91-B73AB8705A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AE8A369-F6DC-4680-BC91-B73AB8705A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB9504C-417D-438D-920F-6C461F3FFD99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB9504C-417D-438D-920F-6C461F3FFD99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB9504C-417D-438D-920F-6C461F3FFD99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB9504C-417D-438D-920F-6C461F3FFD99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
