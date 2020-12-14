@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "value": "BankReports"
+    },
+    "azureblob_Connection_Name": {
+      "value": "azureblob"
+    },
+    "azureblob_Connection_DisplayName": {
+      "value": "bankreports"
+    },
+    "LogicAppIntegrationAccountName": {
+      "value": "bank-integration-account"
+    },
+    "azureblob_privacySetting": {
+      "value": "Public"
+    },
+    "azureblob_accessKey": {
+      "value": "VLoKuEiL4lquAau5tRuTdOh1SO5U7Hwf3l4OeqYqQ8592tttB0dTL7CoFJOVsSDqqZCsSmsPmQEhkr0MDdhBBg=="
+    },
+    "office365_Connection_Name": {
+      "value": "office365"
+    },
+    "office365_Connection_DisplayName": {
+      "value": "Saisriharsha.Mankala@neudesic.com"
+    }
+  }
+}
