@@ -32,7 +32,7 @@
     <Content Include="BankReports.parameters.json" />
     <Content Include="IntegrationAccount.json" />
     <Content Include="IntegrationAccount.parameters.json" />
-    <None Include="Maps\Bank.xslt" />
+    <Content Include="Maps\Bank.xslt" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
